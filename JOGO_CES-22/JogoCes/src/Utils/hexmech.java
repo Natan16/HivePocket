@@ -170,7 +170,7 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 
 		int x = (int) (mx / (s+t)); //this gives a quick value for x. It works only on odd cols and doesn't handle the triangle sections. It assumes that the hexagon is a rectangle with width s+t (=1.5*s).
 		int y = (int) ((my - (x%2)*r)/h); //this gives the row easily. It needs to be offset by h/2 (=r)if it is in an even column
-
+		
 		/******FIX for clicking in the triangle spaces (on the left side only)*******/
 		//dx,dy are the number of pixels from the hex boundary. (ie. relative to the hex clicked in)
 		int dx = mx - x*(s+t);
