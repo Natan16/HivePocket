@@ -21,23 +21,9 @@ import java.net.URL;
  ***********************************/
 
 public class Menu{
-  private Menu() throws IOException {
+  public Menu() throws IOException {
 		initGame();
 		createAndShowGUI();
-	}
-
-	public static void main(String[] args)
-	{
-		SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-				try {
-					new Menu();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				}
-				});
 	}
 
 	//constants and global variables
@@ -50,13 +36,25 @@ public class Menu{
 	public final static Color COLOURTWOTXT = new Color(255,100,255);
 //	final static int EMPTY = 0;
 	final static int BSIZE = 3; //tanto de hexagonos na horizontal
-	final static int HEXSIZE = 
-			300;	//Zoom
+	final static int HEXSIZE = 300;	
 	public final static int BORDERS = 20; //espaco lateral 
 	final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS*3; //screen size (vertical dimension).
 	private static Container content;
 	BufferedImage[][] board;
 
+	public static void main(String[] args)
+	{
+		SwingUtilities.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				new Menu();
+			} catch (IOException e) {
+						e.printStackTrace();
+			}
+		}
+	});
+	}
+	
 	void initGame() throws IOException{
 
 		Utils.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
@@ -111,13 +109,9 @@ public class Menu{
 	@SuppressWarnings("serial")
 	class DrawingPanel extends JPanel
 	{		
-		//mouse variables here
-		//Point mPt = new Point(0,0);
-
 		public DrawingPanel()
 		{	
 			setBackground(COLOURBACK);
-
 			TelaManager ml = new TelaManager();            
 			addMouseListener(ml);
 		}
@@ -139,14 +133,9 @@ public class Menu{
 			//fill in hexes
 			for (int i=0;i<BSIZE;i++) {
 				for (int j=0;j<BSIZE;j++) {					
-					//if (board[i][j] < 0) hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
-					//if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO, board[i][j],g2);
 					Utils.fillHex(i,j,board[i][j],g2);
 				}
 			}
-
-			//g.setColor(Color.RED);
-			//g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 		}
 
 	} // end of DrawingPanel class

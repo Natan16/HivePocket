@@ -143,7 +143,7 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
 		//if (n < 0) {
-			g2.setColor(Menu.COLOURONE);
+			g2.setColor(Menu.COLOURCELL);
 			g2.fillPolygon(hex(x,y));
 			g2.setColor(Menu.COLOURONETXT);
 			//c = (char)(-n);

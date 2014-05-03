@@ -25,7 +25,7 @@ public class TelaManager extends MouseAdapter {
 			Sair sair = new Sair();
 		}
 		if(p.x == 1 && p.y == 0 ){
-			
+			Jogo novo = new Jogo();
 		}
 		if(p.x == 1 && p.y == 0 ){
 			
