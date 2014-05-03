@@ -7,7 +7,7 @@ import javax.swing.Icon;
 
 /* This is a companion class to hexgame.java. It handles all of the mechanics related to hexagon grids. */
 
-public class hexmech
+public class fucMenu
 {
 /* Helpful references: 
 http://www.codeproject.com/Articles/14948/Hexagonal-grid-for-games-and-other-projects-Part-1
@@ -139,7 +139,7 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 	  The colour is set by hexgame.COLOURONE and hexgame.COLOURTWO.
 	  The value of n is converted to letter and drawn in the hexagon.
 *****************************************************************************/
-	public static void fillHex(int i, int j, Graphics2D g2) {
+	public static void fillHex(int i, int j, Image n, Graphics2D g2) {
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
 		
@@ -171,7 +171,7 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 
 		int x = (int) (mx / (s+t)); //this gives a quick value for x. It works only on odd cols and doesn't handle the triangle sections. It assumes that the hexagon is a rectangle with width s+t (=1.5*s).
 		int y = (int) ((my - (x%2)*r)/h); //this gives the row easily. It needs to be offset by h/2 (=r)if it is in an even column
-		
+
 		/******FIX for clicking in the triangle spaces (on the left side only)*******/
 		//dx,dy are the number of pixels from the hex boundary. (ie. relative to the hex clicked in)
 		int dx = mx - x*(s+t);

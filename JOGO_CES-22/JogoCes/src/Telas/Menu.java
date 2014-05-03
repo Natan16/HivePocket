@@ -114,7 +114,7 @@ public class Menu
 				for (int j=0;j<BSIZE;j++) {					
 					//if (board[i][j] < 0) hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					//if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO, board[i][j],g2);
-					hexmech.fillHex(i,j,board[i][j],g2);
+					hexmech.fillHex(i,j,g2);
 				}
 			}
 
