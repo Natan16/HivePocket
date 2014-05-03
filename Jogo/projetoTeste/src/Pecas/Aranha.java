@@ -1,4 +1,4 @@
-package Peças;
+package Pecas;
 
 public class Aranha {
 

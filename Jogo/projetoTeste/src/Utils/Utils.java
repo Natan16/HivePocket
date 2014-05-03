@@ -1,13 +1,13 @@
-package Telas;
-
+package Utils;
 import java.awt.*;
-
-import javax.swing.Icon;
+import java.awt.image.BufferedImage;
 //import javax.swing.*;
+
+import Telas.Menu;
 
 /* This is a companion class to hexgame.java. It handles all of the mechanics related to hexagon grids. */
 
-public class fucMenu
+public class Utils
 {
 /* Helpful references: 
 http://www.codeproject.com/Articles/14948/Hexagonal-grid-for-games-and-other-projects-Part-1
@@ -47,7 +47,7 @@ http://www.tonypa.pri.ee/tbw/tut25.html
 	}
 
 	/** This functions takes the Side length in pixels and uses that as the basic dimension of the hex.
-        It calculates all other needed constants from this dimension.
+          It calculates all other needed constants from this dimension.
 	*/
 	public static void setSide(int side) {
 		s=side;
@@ -65,9 +65,9 @@ http://www.tonypa.pri.ee/tbw/tut25.html
 /*********************************************************
 Name: hex()
 Parameters: (x0,y0) This point is normally the top left corner 
-of the rectangle enclosing the hexagon. 
-However, if XYVertex is true then (x0,y0) is the vertex of the 
-top left corner of the hexagon. 
+  of the rectangle enclosing the hexagon. 
+  However, if XYVertex is true then (x0,y0) is the vertex of the 
+  top left corner of the hexagon. 
 Returns: a polygon containing the six points.
 Called from: drawHex(), fillhex()
 Purpose: This function takes two points that describe a hexagon
@@ -139,15 +139,26 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 	  The colour is set by hexgame.COLOURONE and hexgame.COLOURTWO.
 	  The value of n is converted to letter and drawn in the hexagon.
 *****************************************************************************/
-	public static void fillHex(int i, int j, Image n, Graphics2D g2) {
+	public static void fillHex(int i, int j, BufferedImage img, Graphics2D g2) {
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
-		
-		g2.setColor(Menu.COLOURONE);
-		g2.fillPolygon(hex(x,y));
-		g2.setColor(Menu.COLOURONETXT);
-		g2.drawImage(n, x+r+BORDERS, y+r+BORDERS+4,null); //FIXME: handle XYVertex
-		//g2.drawString(x+","+y, x+r+BORDERS, y+r+BORDERS+4);
+		//if (n < 0) {
+			g2.setColor(Menu.COLOURONE);
+			g2.fillPolygon(hex(x,y));
+			g2.setColor(Menu.COLOURONETXT);
+			//c = (char)(-n);
+			//g2.drawString(""+c, x+r+BORDERS, y+r+BORDERS+4); //FIXME: handle XYVertex
+			//g2.drawString(x+","+y, x+r+BORDERS, y+r+BORDERS+4);
+			g2.drawImage(img,  x + Menu.BORDERS ,  y + Menu.BORDERS, null);
+		//}
+		//if (n > 0) {
+		//	g2.setColor(hexgame.COLOURTWO);
+		//	g2.fillPolygon(hex(x,y));
+		//	g2.setColor(hexgame.COLOURTWOTXT);
+		//	c = (char)n;
+		//	g2.drawString(""+c, x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
+			//g2.drawString(i+","+j, x+r+BORDERS, y+r+BORDERS+4);
+		//}
 	}
 
 	//This function changes pixel location from a mouse click to a hex grid location
@@ -155,11 +166,11 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 * Name: pxtoHex (pixel to hex)
 * Parameters: mx, my. These are the co-ordinates of mouse click.
 * Returns: point. A point containing the coordinates of the hex that is clicked in.
-       If the point clicked is not a valid hex (ie. on the borders of the board, (-1,-1) is returned.
+         If the point clicked is not a valid hex (ie. on the borders of the board, (-1,-1) is returned.
 * Function: This only works for hexes in the FLAT orientation. The POINTY orientation would require
-        a whole other function (different math).
-        It takes into account the size of borders.
-        It also works with XYVertex being True or False.
+          a whole other function (different math).
+          It takes into account the size of borders.
+          It also works with XYVertex being True or False.
 *****************************************************************************/
 	public static Point pxtoHex(int mx, int my) {
 		Point p = new Point(-1,-1);
